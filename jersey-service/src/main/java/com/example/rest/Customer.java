@@ -1,7 +1,9 @@
 package com.example.rest;
 
 import java.util.concurrent.atomic.AtomicLong;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement(name = "customer") 
 public class Customer {
   private final long id;
   private final String firstName;
