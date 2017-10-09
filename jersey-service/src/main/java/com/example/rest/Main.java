@@ -15,6 +15,7 @@ import java.util.Optional;
 public class Main {
     // Base URI the Grizzly HTTP server will listen on
 	public static final String BASE_URI;
+	public static final String BASE_URI_TEST;
     public static final String protocol;
     public static final Optional<String> host;
     public static final String path;
@@ -22,10 +23,11 @@ public class Main {
     
     static{
     	protocol = "http://";
-		host = Optional.ofNullable(System.getenv("HOSTNAME"));
-		port = Optional.ofNullable(System.getenv("PORT"));
+		host = Optional.ofNullable(System.getenv("APP_HOSTNAME"));
+		port = Optional.ofNullable(System.getenv("APP_PORT"));
 		path = "myapp";
-		BASE_URI = protocol + host.orElse("localhost") + ":" + port.orElse("8080") + "/" + path + "/";
+		BASE_URI = protocol + host.orElse("0.0.0.0") + ":" + port.orElse("8080") + "/" + path + "/";
+		BASE_URI_TEST = protocol + host.orElse("localhost") + ":" + port.orElse("8080") + "/" + path + "/";
 	}
 
     /**
@@ -51,7 +53,12 @@ public class Main {
         final HttpServer server = startServer();
         System.out.println(String.format("Jersey app started with WADL available at "
                 + "%sapplication.wadl\nHit enter to stop it...", BASE_URI));
-        System.in.read();
+        try {
+			Thread.currentThread().join();
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         server.stop();
     }
 }

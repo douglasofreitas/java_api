@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -22,7 +21,7 @@ public class CustomerService {
   @GET
   @Path("/all/json")
   @Produces(MediaType.APPLICATION_JSON)
-  public List getAllCustomersJson() {
+  public List<Customer> getAllCustomersJson() {
 	List listCustomer = new ArrayList();
 	Iterator<Customer> customerIter = cList.iterator();
     while (customerIter.hasNext()){

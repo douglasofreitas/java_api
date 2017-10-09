@@ -1,0 +1,30 @@
+version: '2'
+services:
+  build:
+    build: .
+    container_name: 'java-api-src'
+    hostname: 'build'
+    ports:
+      - "8080:8080"
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    environment:
+      APP_HOSTNAME: localhost
+      APP_PORT: 8080
+  dev:
+    build: ./docker/dev
+    container_name: 'java-api-src'
+    hostname: 'dev'
+    ports:
+      - "8080:8080"
+    cap_add:
+      - NET_ADMIN
+      - SYS_ADMIN
+    environment:
+      APP_HOSTNAME: localhost
+      APP_PORT: 8080
+    volumes:
+      - ./:/usr/src/myapp
+#  redis:
+#    image: "redis:alpine"
