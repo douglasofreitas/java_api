@@ -1,16 +1,19 @@
 .PHONY: run in stop clean
 
+build: 
+	docker build -t "java_api" .
+
 run:
+	docker run -it -p 8080:8080 --rm --name java_api_test java_api /bin/bash
+
+compose:
 	docker-compose up --build -d build
 
-rundev:
-	docker-compose up --build -d dev
-
-in:
+compose-in:
 	docker exec -i -t java-api-src /bin/bash
 
-stop:
+compose-stop:
 	docker-compose stop
 
-clean:
+compose-clean:
 	docker-compose down

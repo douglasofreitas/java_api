@@ -1,10 +1,13 @@
 package com.example.rest;
 
+import java.io.Serializable;
 import java.util.concurrent.atomic.AtomicLong;
-import javax.xml.bind.annotation.XmlRootElement;
 
+import javax.xml.bind.annotation.*;
+
+@XmlAccessorType(XmlAccessType.FIELD)
 @XmlRootElement(name = "customer") 
-public class Customer {
+public class Customer implements Serializable{
   private final long id;
   private final String firstName;
   private final String lastName;
