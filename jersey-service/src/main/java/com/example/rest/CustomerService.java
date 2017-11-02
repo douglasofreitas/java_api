@@ -22,8 +22,8 @@ public class CustomerService {
   @Path("/all/json")
   @Produces(MediaType.APPLICATION_JSON)
   public List<Customer> getAllCustomersJson() {
-	List listCustomer = new ArrayList();
-	Iterator<Customer> customerIter = cList.iterator();
+    List listCustomer = new ArrayList();
+    Iterator<Customer> customerIter = cList.iterator();
     while (customerIter.hasNext()){
       listCustomer.add(customerIter.next());
     }
